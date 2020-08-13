@@ -8,6 +8,12 @@ import com.aspose.psd.imageoptions.PngOptions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The map of {@link ImageOptionsBase}s to image extensions (png, jpg, gif, etc.). Values of this
+ * enum must be called like existing image file extensions (see {@link #getImageExtension(Class)}).
+ * Image extensions are cached to not be iterated through all values each time when an image
+ * extension is requested with {@link #getImageExtension(Class)}.
+ */
 public enum ImageExtension
 {
     PNG(PngOptions.class), JPG(JpegOptions.class), GIF(GifOptions.class);

@@ -4,6 +4,9 @@ import com.aspose.psd.ImageOptionsBase;
 import com.aspose.psd.fileformats.psd.PsdImage;
 import com.aspose.psd.fileformats.psd.layers.Layer;
 
+/**
+ * Exports all layers of a Photoshop document using {@link LayerExporter}.
+ */
 public class PsdImageLayersExporter implements ImageExporter<PsdImage>
 {
     private LayerExporter layerExporter;
