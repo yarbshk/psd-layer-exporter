@@ -62,10 +62,10 @@ public class ImageNameFormatterImpl implements ImageNameFormatter<Layer>
     public final String format(Layer layer, ImageOptionsBase options)
     {
         String filename = filenameTemplate;
-        Map<String, String> placeholderKeyToValueMap = getPlaceholderKeyToValueMap(layer, options);
-        for (Map.Entry<String, String> entry : placeholderKeyToValueMap.entrySet())
+        Map<String, String> placeholderEntries = getPlaceholderEntries(layer, options);
+        for (Map.Entry<String, String> entry : placeholderEntries.entrySet())
         {
-            Matcher matcher = placeholderPattern.matcher(wrapPlaceholderKey(entry.getKey()));
+            Matcher matcher = placeholderPattern.matcher(getPlaceholder(entry.getKey()));
             while (matcher.find())
             {
                 String placeholder = matcher.group();
@@ -76,7 +76,7 @@ public class ImageNameFormatterImpl implements ImageNameFormatter<Layer>
         return filename;
     }
 
-    protected Map<String, String> getPlaceholderKeyToValueMap(Layer layer, ImageOptionsBase options)
+    protected Map<String, String> getPlaceholderEntries(Layer layer, ImageOptionsBase options)
     {
         Map<String, String> map = new HashMap<String, String>();
         map.put("layer.name", layer.getName());
@@ -84,7 +84,7 @@ public class ImageNameFormatterImpl implements ImageNameFormatter<Layer>
         return map;
     }
 
-    private String wrapPlaceholderKey(String placeholderKey)
+    private String getPlaceholder(String placeholderKey)
     {
         return placeholderPrefix + placeholderKey + placeholderSuffix;
     }
